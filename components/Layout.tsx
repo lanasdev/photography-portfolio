@@ -12,8 +12,8 @@ type Props = {
 
 const Layout = ({
   children,
-  title = "This is the default title",
-  description = "Put your default description here.",
+  title = "Brat Photography",
+  description = "capturing unique moments in life",
 }: Props) => (
   <div>
     <Head>
@@ -23,9 +23,9 @@ const Layout = ({
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    {/* <Navbar /> */}
+    <Navbar />
     {children}
-    {/* <Footer /> */}
+    <Footer />
   </div>
 );
 

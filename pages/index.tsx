@@ -7,18 +7,31 @@ import cn from "classnames";
 import { GetStaticProps } from "next";
 
 import { request } from "../lib/datocms";
-import { Image } from "react-datocms";
+import { Image, renderMetaTags } from "react-datocms";
+import Title from "components/Title";
 
 
-import street1 from "public/img/street2.jpg";
-import street2 from "public/img/street2.jpg";
 
 const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
+  site: _site {
+    favicon: faviconMetaTags {
+      attributes
+      content
+      tag
+    }
+    locales
+    globalSeo {
+      titleSuffix
+      twitterAccount
+      facebookPageUrl
+      siteName
+    }
+  }
   allImages(first: $limit) {
     id
     slug
     image {
-      responsiveImage(imgixParams: { fit: crop, w: 400, h: 400, auto: format }) {
+      responsiveImage(imgixParams: {fit: crop, w: 300, h: 300, auto: format}) {
         srcSet
         webpSrcSet
         sizes
@@ -32,15 +45,25 @@ const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
       }
     }
   }
+  _allImagesMeta {
+    count
+  }
+  headline {
+    title
+    subtitle
+  }
+  calltoaction {
+    url
+    smalltitle
+    buttontext
+  }
 }`;
 
 const IndexPage = ({ data }) => {
   return (
-    <Layout title="Bart Photography">
-      <div className="flex flex-col items-center justify-center pt-24 mx-8">
-        <h1 className="text-4xl font-bold md:text-6xl ">Bart Photography</h1>
-        <h2 className="pt-2 text-2xl"> capturing moments of life</h2>
-      </div>
+    <Layout title={data.site.globalSeo.siteName || "Bart Photography"}>
+      {/* <Head>{renderMetaTags(data._site.globalSeo.concat(data.site.favicon))}</Head> */}
+      <Title headline={data.headline} />
       <Gallery data={data} />
 
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
@@ -52,9 +75,9 @@ const Gallery = ({ data }) => {
     <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {data.allImages.map((i) => (
-          <Link href={`/image/${i.slug}`} key={i.slug}>
+          <Link href={`/${i.slug}`} key={i.slug}>
             <a className="flex flex-col justify-center items-center">
-              <Image data={i?.image.responsiveImage} />
+              <Image className="rounded-sm" data={i?.image.responsiveImage} />
             </a>
           </Link>
         ))}
@@ -68,8 +91,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const data = await request({
     query: HOMEPAGE_QUERY,
-    variables: { limit: 20 }
   });
+
   return {
     props: {
       data,

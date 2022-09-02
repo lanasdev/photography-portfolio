@@ -1,5 +1,5 @@
 import { GraphQLClient } from "graphql-request";
-export function request({ query, variables, includeDrafts = false, excludeInvalid = true }) {
+export function request({ query, variables = {}, includeDrafts = false, excludeInvalid = true }) {
     const headers = {
         authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
     };
