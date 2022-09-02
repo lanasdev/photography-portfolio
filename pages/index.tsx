@@ -11,6 +11,32 @@ import { Image, renderMetaTags } from "react-datocms";
 import Title from "components/Title";
 
 
+const LAYOUT_QUERY = `query LayoutQuery {
+  headline {
+    title
+    subtitle
+  }
+  _site {
+    globalSeo {
+      siteName
+      fallbackSeo {
+        description
+        title
+      }
+    }
+    faviconMetaTags {
+      attributes
+      content
+      tag
+    }
+  }
+  calltoaction {
+    smalltitle
+    url
+    buttontext
+  }
+}`;
+
 
 const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
   site: _site {
