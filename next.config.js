@@ -4,6 +4,7 @@ module.exports = {
       "images.unsplash.com",
       "bit.ly",
       "https://laqqlcjajrjzxickmkov.supabase.co",
+      "www.datocms-assets.com",
     ],
   },
 };
