@@ -9,19 +9,6 @@ import { supabase } from "utils/supabaseClient";
 import street1 from "public/img/street2.jpg";
 import street2 from "public/img/street2.jpg";
 
-// const images = [
-//   {
-//     id: 1,
-//     href: "img/street1.jpg",
-//     imageSrc: street1,
-//   },
-//   {
-//     id: 2,
-//     href: "img/street2.jpg",
-//     imageSrc: street2,
-//   },
-// ];
-
 const IndexPage = ({ images }) => (
   <Layout title="Bart Photography">
     {/* <div className="flex flex-col justify-center py-2 md:flex-row-reverse">
@@ -29,15 +16,22 @@ const IndexPage = ({ images }) => (
         <h1 className="text-4xl font-bold md:text-6xl">Bart Photography</h1>
         <h2 className="text-2xl "> visualizing moments of life</h2>
       </div> */}
-    <div className="flex flex-col items-center justify-center pt-24">
-      <h1 className="text-4xl font-bold md:text-6xl">Bart Photography</h1>
-      <h2 className="pt-2 text-2xl"> visualizing moments of life</h2>
+    <div className="flex flex-col items-start justify-between md:flex-row-reverse">
+      <div className=" flex flex-1 flex-col items-center justify-center pt-24">
+        <h1 className="text-4xl font-bold md:text-6xl">Bart Photography</h1>
+        <h2 className="pt-2 text-2xl">visualizing moments of life</h2>
+        <p className="md:fixed">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ad
+          iste rem maiores excepturi soluta, odio iusto doloribus beatae ratione
+          eum aliquid, repellendus est! Beatae consectetur doloremque saepe
+          porro reprehenderit.
+        </p>
+      </div>
+      <Gallery images={images} />
     </div>
-    <Gallery images={images} />
-    {/* <pre>{JSON.stringify(images, null, 2)}</pre> */}
-    {/* </div> */}
   </Layout>
 );
+
 type Image = {
   id: number;
   href: string;
@@ -48,8 +42,8 @@ type Image = {
 
 const Gallery = ({ images }: { images: Image[] }) => {
   return (
-    <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-      <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+    <div className="max-w-2xl flex-1 lg:max-w-7xl">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {images.map((image) => (
           <BlurImage key={image.id} image={image} />
         ))}
@@ -63,7 +57,7 @@ const BlurImage = ({ image }: { image: Image }) => {
 
   return (
     <a href={image.href} className="group">
-      <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+      <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 ">
         <Image
           alt=""
           src={image.imageSrc}
