@@ -9,16 +9,24 @@ type Props = {
   children?: ReactNode;
   title?: string;
   description?: string;
+  isHome?: boolean;
+  social?: {
+    instagram?: string;
+    twitter?: string;
+    email?: string;
+  };
 };
 
 const Layout = ({
   children,
   title = "Brat Photography",
   description = "capturing unique moments in life",
+  isHome = false,
+  social,
 }: Props) => (
   <div>
     <Head>
-      <title>{title}</title>
+      <title>{isHome ? "Brat Photography" : `${title} | Brad Photography`}</title>
       <meta name="description" content={description}></meta>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -30,7 +38,8 @@ const Layout = ({
     </Head>
     {/* <Navbar /> */}
     {children}
-    <Footer />
+    {/* <Footer /> */}
+
   </div>
 )
 

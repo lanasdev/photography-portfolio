@@ -9,6 +9,8 @@ import { GetStaticProps } from "next";
 import { request } from "../lib/datocms";
 import { Image, renderMetaTags } from "react-datocms";
 import Title from "components/Title";
+import Contact from "components/Contact";
+import Footer from "components/Footer";
 
 
 const LAYOUT_QUERY = `query LayoutQuery {
@@ -83,16 +85,23 @@ const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
     smalltitle
     buttontext
   }
+  social {
+    instagram
+    twitter
+    email
+  }
 }`;
 
 const IndexPage = ({ data }) => {
   return (
-    <Layout title={data.site.globalSeo.siteName || "Bart Photography"}>
+    <Layout isHome={true} social={data.social}>
+      {/* <Layout title={data.site.globalSeo.siteName || "Bart Photography"}> */}
       {/* <Head>{renderMetaTags(data._site.globalSeo.concat(data.site.favicon))}</Head> */}
       <Title headline={data.headline} />
       <Gallery data={data} />
-
+      <Contact calltoaction={data.calltoaction} />
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <Footer social={data.social} />
     </Layout>
   );
 }
@@ -103,7 +112,7 @@ const Gallery = ({ data }) => {
         {data.allImages.map((i) => (
           <Link href={`/${i.slug}`} key={i.slug}>
             <a className="flex flex-col justify-center items-center">
-              <Image className="rounded-sm" data={i?.image.responsiveImage} />
+              <Image className="rounded-sm hover:rounded-lg ease-in-out duration-200" data={i?.image.responsiveImage} />
             </a>
           </Link>
         ))}

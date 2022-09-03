@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Poppins Regular"), local("Poppins-Regular"), local("Poppins"),
+    url("/fonts/Poppins-Regular.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Abril Fatface";
+  font-style: normal;
+  font-weight: 400;
+  src: local("AbrilFatface"), local("AbrilFatface-Regular"),
+    local("Abril Fatface"), url("/fonts/AbrilFatface-Regular.ttf") format("ttf");
+}

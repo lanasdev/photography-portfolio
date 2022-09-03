@@ -8,6 +8,8 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { request } from "lib/datocms";
 import { Image } from "react-datocms";
 import Title from "components/Title";
+import Contact from "components/Contact";
+import Footer from "components/Footer";
 
 const ONE_IMAGE_QUERY = `query OneImageQuery($eq: String!) {
   image(filter: {slug: {eq: $eq}}) {
@@ -33,50 +35,66 @@ const ONE_IMAGE_QUERY = `query OneImageQuery($eq: String!) {
     title
     subtitle
   }
+  calltoaction {
+    smalltitle
+    url
+    buttontext
+  }
+  social {
+    instagram
+    twitter
+    email
+  }
 }`;
 
 
 
 const ImageBig = ({ data }) => {
-    // console.log("Data in Component", data);
+  // console.log("Data in Component", data);
 
-    return (
-        <div className="flex flex-col justify-center items-center min-h-screen pb-32">
-            <Title headline={data.headline} />
+  return (
+    <Layout title={data.image.name}>
+      <div className="flex flex-col justify-center items-center min-h-screen pb-32">
+        <Title headline={data.headline} />
 
-            <div className="pt-16">
-                <Image data={data.image.image.responsiveImage} />
-            </div>
+        <div className="pt-16">
+          <Image data={data.image.image.responsiveImage} />
         </div>
-    );
+        <Contact calltoaction={data.calltoaction} />
+      </div>
+      <Footer social={data.social} />
+    </Layout>
+  );
 }
 export default ImageBig;
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const data = await request({ query: `{ allImages { slug } }` })
+  const data = await request({ query: `{ allImages { slug } }` })
 
-    const paths = data.allImages.map((image) => ({
-        params: { slug: image.slug },
-    }));
+  const paths = data.allImages.map((image) => ({
+    params: { slug: image?.slug }
+  }));
 
-    return {
-        paths,
-        fallback: false, // can also be true or 'blocking'
-    }
+
+  return {
+    paths,
+    fallback: false, // can also be true or 'blocking'
+  }
 }
 
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context) => {
-    const data = await request({
-        query: ONE_IMAGE_QUERY,
-        variables: { eq: context.params.slug },
-    });
+  const data = await request({
+    query: ONE_IMAGE_QUERY,
+    variables: { eq: context.params.slug },
+  });
 
-    return {
-        // Passed to the page component as props
-        props: { data },
-    }
+  return {
+    // Passed to the page component as props
+    props: { data },
+    revalidate: 30,
+  }
 }
 
 
