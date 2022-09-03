@@ -1,10 +1,15 @@
+import Link from "next/link";
 import { InstagramLogo, TwitterLogo, Envelope } from "phosphor-react";
 
 const Footer = ({ social }) => {
   return (
     <footer>
       <div className="px-8 py-8 flex flex-col md:flex-row justify-between items-center">
-        <div>&copy; {new Date().getFullYear() || "2022"} - Bart Photography</div>
+        <Link href={'/about'}>
+          <a>
+            &copy; {new Date().getFullYear() || "2022"} - Bart Photography
+          </a>
+        </Link>
         <div className="flex space-x-6 md:space-x-8 py-4 md:py-0">
           {social.instagram && (<a href={social?.instagram} target="_blank" rel="noopener noreferrer"><InstagramLogo size={24} /></a>)}
           {/* {console.log("IG", social?.instagram)} */}
