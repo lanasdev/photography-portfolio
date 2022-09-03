@@ -12,34 +12,6 @@ import Title from "components/Title";
 import Contact from "components/Contact";
 import Footer from "components/Footer";
 
-
-const LAYOUT_QUERY = `query LayoutQuery {
-  headline {
-    title
-    subtitle
-  }
-  _site {
-    globalSeo {
-      siteName
-      fallbackSeo {
-        description
-        title
-      }
-    }
-    faviconMetaTags {
-      attributes
-      content
-      tag
-    }
-  }
-  calltoaction {
-    smalltitle
-    url
-    buttontext
-  }
-}`;
-
-
 const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
   site: _site {
     favicon: faviconMetaTags {
@@ -59,7 +31,7 @@ const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
     id
     slug
     image {
-      responsiveImage(imgixParams: {fit: crop, w: 300, h: 300, auto: format}) {
+      responsiveImage(imgixParams: {fit: crop, w: 500, h: 500, auto: format}) {
         srcSet
         webpSrcSet
         sizes
@@ -111,7 +83,7 @@ const Gallery = ({ data }) => {
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {data.allImages.map((i) => (
           <Link href={`/${i.slug}`} key={i.slug}>
-            <a className="flex flex-col justify-center items-center">
+            <a className="flex flex-col justify-center items-center" aria-label={i?.image.alt || i.image.responsiveImage.alt} >
               <Image className="rounded-sm hover:rounded-lg ease-in-out duration-200" data={i?.image.responsiveImage} />
             </a>
           </Link>

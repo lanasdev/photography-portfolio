@@ -11,10 +11,10 @@ const Footer = ({ social }) => {
           </a>
         </Link>
         <div className="flex space-x-6 md:space-x-8 py-4 md:py-0">
-          {social.instagram && (<a href={social?.instagram} target="_blank" rel="noopener noreferrer" className="hover:rotate-12 ease-in-out duration-200" ><InstagramLogo size={24} /></a>)}
+          {social.instagram && (<a href={social?.instagram} target="_blank" rel="noopener noreferrer" className="hover:rotate-12 ease-in-out duration-200" aria-label="Instagram Button" ><InstagramLogo size={24} /></a>)}
           {/* {console.log("IG", social?.instagram)} */}
-          {social.twitter && (<a href={social?.twitter} target="_blank" rel="noopener noreferrer" className="hover:rotate-12 ease-in-out duration-200" ><TwitterLogo size={24} /></a>)}
-          {social.email && (<a href={`mailto:${social?.email}`} className="hover:rotate-12 ease-in-out duration-200" ><Envelope size={24} /></a>)}
+          {social.twitter && (<a href={social?.twitter} target="_blank" rel="noopener noreferrer" className="hover:rotate-12 ease-in-out duration-200" aria-label="Twitter Button" ><TwitterLogo size={24} /></a>)}
+          {social.email && (<a href={`mailto:${social?.email}`} className="hover:rotate-12 ease-in-out duration-200" aria-label="Email Button" ><Envelope size={24} /></a>)}
 
         </div>
       </div>
