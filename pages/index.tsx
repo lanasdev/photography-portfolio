@@ -67,7 +67,6 @@ const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
 const IndexPage = ({ data }) => {
   return (
     <Layout isHome={true} social={data.social}>
-      {/* <Layout title={data.site.globalSeo.siteName || "Bart Photography"}> */}
       {/* <Head>{renderMetaTags(data._site.globalSeo.concat(data.site.favicon))}</Head> */}
       <Title headline={data.headline} />
       <Gallery data={data} />

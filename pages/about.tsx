@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import Link from "next/link";
 import Layout from "../components/Layout";
 import cn from "classnames";
