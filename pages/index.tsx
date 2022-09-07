@@ -60,6 +60,7 @@ const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
   social {
     instagram
     twitter
+    github
     email
   }
 }`;

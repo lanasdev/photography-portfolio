@@ -43,6 +43,7 @@ const ONE_IMAGE_QUERY = `query OneImageQuery($eq: String!) {
   social {
     instagram
     twitter
+    github
     email
   }
 }`;
