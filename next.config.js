@@ -1,10 +1,7 @@
+/** @type {import('next').NextConfig} */
+
 module.exports = {
   images: {
-    domains: [
-      "images.unsplash.com",
-      "bit.ly",
-      "https://laqqlcjajrjzxickmkov.supabase.co",
-      "www.datocms-assets.com",
-    ],
+    domains: ["images.unsplash.com", "www.datocms-assets.com"],
   },
 };

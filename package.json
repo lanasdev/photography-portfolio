@@ -12,25 +12,25 @@
     "classnames": "^2.3.1",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
-    "next": "12.2.5",
+    "next": "12.3.0",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-datocms": "^3.1.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@types/node": "^18.7.14",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@types/node": "^18.7.16",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.8",
     "eslint": "^8.23.0",
-    "eslint-config-next": "^12.2.5",
+    "eslint-config-next": "^12.3.0",
     "eslint-config-prettier": "^8.5.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "tailwindcss": "^3.1.8",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.3"
   }
 }
