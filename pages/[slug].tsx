@@ -17,17 +17,13 @@ const ONE_IMAGE_QUERY = `query OneImageQuery($eq: String!) {
     slug
     name
     image {
-      responsiveImage(imgixParams: { auto: format, w: "1080", fit: crop }) {
-        srcSet
-        webpSrcSet
-        sizes
+      responsiveImage(imgixParams: { auto: format }) {
         src
         width
         height
-        aspectRatio
         alt
-        title
         base64
+    
       }
     }
   }

@@ -32,16 +32,11 @@ const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
     slug
     image {
       responsiveImage(imgixParams: {fit: crop, w: 500, h: 500, auto: format}) {
-        srcSet
-        webpSrcSet
-        sizes
         src
         width
         height
-        aspectRatio
         alt
-        title
-        base64
+        base64    
       }
     }
   }
