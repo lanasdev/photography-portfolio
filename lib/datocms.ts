@@ -1,5 +1,6 @@
 import { GraphQLClient } from "graphql-request";
-export function request({ query, variables = {}, includeDrafts = false, excludeInvalid = true }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function request({ query, variables = {}, includeDrafts = false, excludeInvalid = true }): Promise<any> {
     const headers = {
         authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
     };

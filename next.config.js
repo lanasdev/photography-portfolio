@@ -1,8 +1,19 @@
 /** @type {import('next').NextConfig} */
 
 module.exports = {
-  swcMinify: true,
+  turbopack: {
+    root: __dirname,
+  },
   images: {
-    domains: ["images.unsplash.com", "www.datocms-assets.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.datocms-assets.com",
+      },
+    ],
   },
 };
